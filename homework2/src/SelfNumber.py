@@ -61,10 +61,11 @@ def self_num_total(first_num, end_num, total_value) -> int :
             sum_of_digit += int(digit)
 
         generator = sum_of_digit + num
-        # print("generator : {}".format(generator))
+
 
         if(generator < end_num):
             sum_self_num -= generator
+            print("generator : {}".format(generator))
 
     return sum_self_num
 
