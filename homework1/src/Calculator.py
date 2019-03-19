@@ -42,12 +42,12 @@ def value(curr_val, oper_val, next_val):
     return curr_val
 
 
-def cal(input_list):
+def cal(num_list):
 
     # 문자열을 순차적으로 검색한다.
-    resut_val = 0
+    result_val = 0
     oper_val = None
-    for s in input_list:
+    for s in num_list:
         next_val = 0
         p = re.compile("[0-9/+\-\*\/\%\\s]")
         maching_data = p.match(s)
@@ -66,9 +66,9 @@ def cal(input_list):
             oper_val = m_str
         else:
             next_val = float(m_str)
-            resut_val = value(resut_val, oper_val, next_val)
+            result_val = value(result_val, oper_val, next_val)
 
-    return resut_val
+    return result_val
 
 
 def run():
@@ -76,14 +76,14 @@ def run():
 
     while True:
         print("숫자를 입력하세요 문자는 스페이스로 띄어 주세요")
-        input_data = input()
-        input_list = list()
+        num = input()
+        num_list = list()
 
         try:
-            input_list = input_data.split(" ")
+            num_list = num.split(" ")
 
             # 입력값이 충분하지 않을 때
-            if len(input_list) < 2:
+            if len(num_list) < 2:
                 print("계산할 값이 모자랍니다. 다시 입력해주세요.")
                 continue
 
@@ -91,9 +91,9 @@ def run():
             print("e", e)
 
         # 입력값 계산
-        result_val = cal(input_list)
+        result = cal(num_list)
 
-        print("답: ", result_val)
+        print("답: ", result)
         #print("내장 함수 사용:", eval(x))
 
 

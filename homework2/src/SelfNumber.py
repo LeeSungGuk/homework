@@ -23,3 +23,57 @@ generator가 없는 숫자를 self number라고 하고, 1, 3, 5, 7, 9, 20, 31 �
 '''
 
 
+'''
+d(1) = 1 + 1 = 2        1, 3, 5, 7, 9, 11, ...... self number  
+d(2) = 2 + 2 = 4
+d(3) = 3 + 3 = 6
+d(4) = 4 + 4 = 8 
+d(5) = 5 + 5 = 10
+d(6) = 6 + 6 = 12
+d(7) = 7 + 7 = 14
+...
+
+ 
+'''
+
+def sum(first_num, end_num):
+    sum = 0;
+    for i, v in enumerate(range(first_num, end_num)):
+        # print("index: {}, value: {}".format(i, v))
+        sum += v
+
+    return sum
+
+def self_num_total(first_num, end_num, total_value):
+    #generator 을 구한다.  d(91) = 9 + 1 + 91 = 101 은 generator가 된다. 각각의 자릿수 더하고 숫자값을 더한다.
+
+    sum_self_num = total_value
+    for num in range(first_num, end_num):
+        sum_of_digit = 0 # 자릿수의 합
+        generator = 0
+        for digit in str(num):
+            sum_of_digit += int(digit)
+
+        generator = sum_of_digit + num
+        # print("generator : {}".format(generator))
+
+        if(generator < end_num):
+            sum_self_num -= generator
+
+    return sum_self_num
+
+
+def run():
+    #1부터 5000 미만의 합을 구한다.
+    first_num = 1
+    end_num = 4
+
+    total_value = sum(first_num, end_num)
+
+    # 1 ~ 5000 미만의 generator 을 구하면서 전체 데이터 값에 빼준다. 그러면 self_num의 총 합이 나온다.
+    result = self_num_total(first_num, end_num, total_value)
+    print("Sum of self number = {}".format(result))
+
+
+if __name__ == '__main__':
+    run()
