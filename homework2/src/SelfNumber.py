@@ -24,6 +24,7 @@ generator가 없는 숫자를 self number라고 하고, 1, 3, 5, 7, 9, 20, 31 �
 
 
 '''
+1. input과 ouput을 충분히 모아보세요. 처음부터 완벽할 필요는 없고, 코딩 도중에 추가하셔도 됩니다.
 d(1) = 1 + 1 = 2        1, 3, 5, 7, 9, 11, ...... self number  
 d(2) = 2 + 2 = 4
 d(3) = 3 + 3 = 6
@@ -33,10 +34,14 @@ d(6) = 6 + 6 = 12
 d(7) = 7 + 7 = 14
 ...
 
+2. 어떻게 풀어볼지 간단히 생각하고, 곰인형 등을 앞 또는 옆에 두고 친절하게 설명해 보세요.
+1 ~ 5000 미만의 합을 구한 후, 1 ~ 5000 까지의 generator 값을 빼준다.
+그러면 self number의 합을 구할 수 있다. 하지만 generator의 값이 5000 이상이 되는 것은 제외한다.
  
 '''
 
-def sum(first_num, end_num):
+# 전체 데이터 합
+def sum(first_num, end_num) -> int:
     sum = 0;
     for i, v in enumerate(range(first_num, end_num)):
         # print("index: {}, value: {}".format(i, v))
@@ -44,7 +49,8 @@ def sum(first_num, end_num):
 
     return sum
 
-def self_num_total(first_num, end_num, total_value):
+# self number의 합
+def self_num_total(first_num, end_num, total_value) -> int :
     #generator 을 구한다.  d(91) = 9 + 1 + 91 = 101 은 generator가 된다. 각각의 자릿수 더하고 숫자값을 더한다.
 
     sum_self_num = total_value
@@ -66,7 +72,7 @@ def self_num_total(first_num, end_num, total_value):
 def run():
     #1부터 5000 미만의 합을 구한다.
     first_num = 1
-    end_num = 4
+    end_num = 5000
 
     total_value = sum(first_num, end_num)
 
