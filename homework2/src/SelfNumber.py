@@ -68,7 +68,7 @@ python string을 for 문으로 10 1 , 2 로 읽을 수 있다.
 '''
 
 # 전체 데이터 합
-def sum(first_num, end_num) -> int:
+def total_sum(first_num, end_num) -> int:
     sum = 0;
     for i, v in enumerate(range(first_num, end_num)):
         # print("index: {}, value: {}".format(i, v))
@@ -114,12 +114,7 @@ def result_generator_2(f, e) -> int:
     set_list = set(list_generator)
     # print("set_gene_list: ", list(set_list))
 
-    # 집합합수 전체 합 구하기
-    total = 0
-    for v in set_list:
-        total += v
-
-    return total
+    return sum(set_list)
 
 
 # self number의 합
@@ -142,7 +137,7 @@ def run():
     first_num = 1
     end_num = 5000
 
-    total_value = sum(first_num, end_num)
+    total_value = total_sum(first_num, end_num)
 
     # 1 ~ 5000 미만의 generator 을 구하면서 전체 데이터 값에 빼준다. 그러면 self_num의 총 합이 나온다.
     result = self_num_total(first_num, end_num, total_value)
