@@ -67,48 +67,25 @@ python string을 for 문으로 10 1 , 2 로 읽을 수 있다.
  
 '''
 
-# 전체 데이터 합
-def total_sum(first_num, end_num) -> int:
-    sum = 0;
-    for i, v in enumerate(range(first_num, end_num)):
-        # print("index: {}, value: {}".format(i, v))
-        sum += v
 
-    return sum
-
-# 문제 중복 발생 (중복이 발생 할 경우 생각못함)
-def result_generator(f, e):
-    total_generato = 0
-    for num in range(f, e):
-        sum_of_digit = 0 # 자릿수의 합
-        generator = 0
-        for digit in str(num):
-            sum_of_digit += int(digit)
-
-        generator = sum_of_digit + num
+def number_list(f, e) -> list:
+    return set([v for v in range(f, e)])
 
 
-        if(generator < e):
-            total_generato += generator
-            print("generator : {}".format(generator))
-
-    return total_generato
+def sum_of_numbers(f, e) -> int:
+    return sum(number_list(f, e))
 
 
-def result_generator_2(f, e) -> int:
+def sum_of_digits(f, e) -> int:
     list_generator = []
     for num in range(f, e):
-        generator = 0
-
-        for digit in str(num):
-            generator += int(digit)
-
-        generator += num
-
-        if (generator < e):
+        if(num < 10):
+            generator = num + num
             list_generator.append(generator)
-
-    # print("list_generator: ", list_generator)
+        else:
+            generator = ((num // 10) + (num % 10) + num)
+            if (generator < e):
+                list_generator.append(generator)
 
     # 중복제거
     set_list = set(list_generator)
@@ -118,18 +95,14 @@ def result_generator_2(f, e) -> int:
 
 
 # self number의 합
-def self_num_total(first_num, end_num, total_value) -> int :
+def self_num_total(first_num, end_num) -> int :
     #generator 을 구한다.  d(91) = 9 + 1 + 91 = 101 은 generator가 된다. 각각의 자릿수 더하고 숫자값을 더한다.
+    total_num = sum_of_numbers(first_num, end_num)
+    total_generator = sum_of_digits(first_num, end_num)
 
-    sum_self_num = 0
-    # total_generator = result_generator(first_num, end_num)
-    total_generator = result_generator_2(first_num, end_num)
+    sum_of_self_num = total_num - total_generator
 
-    # 전체 합 - generator 합을 빼준다. 문제 generator 값이 중복이 생성된다.
-    sum_self_num = total_value - total_generator
-
-    return sum_self_num
-
+    return sum_of_self_num
 
 
 def run():
@@ -137,12 +110,11 @@ def run():
     first_num = 1
     end_num = 5000
 
-    total_value = total_sum(first_num, end_num)
-
     # 1 ~ 5000 미만의 generator 을 구하면서 전체 데이터 값에 빼준다. 그러면 self_num의 총 합이 나온다.
-    result = self_num_total(first_num, end_num, total_value)
+    result = self_num_total(first_num, end_num)
     print("Sum of self number = {}".format(result))
 
+    return result
 
 if __name__ == '__main__':
     run()
