@@ -80,13 +80,10 @@ def sum_of_numbers(f, e) -> set:
 def sum_of_digits(f, e) -> int:
     list_generator = []
     for num in range(f, e):
-        if(num < 10):
-            generator = num + num
+        generator = ((num // 10) + (num % 10) + num)
+
+        if (generator < e):
             list_generator.append(generator)
-        else:
-            generator = ((num // 10) + (num % 10) + num)
-            if (generator < e):
-                list_generator.append(generator)
 
     # 중복제거
     set_list = set(list_generator)
@@ -98,17 +95,14 @@ def sum_of_digits(f, e) -> int:
 def digits_set(f, e) -> set:
     list_generator = []
     for num in range(f, e):
-        if (num < 10):
-            generator = num + num
+        generator = ((num // 10) + (num % 10) + num)
+        if (generator < e):
             list_generator.append(generator)
-        else:
-            generator = ((num // 10) + (num % 10) + num)
-            if (generator < e):
-                list_generator.append(generator)
 
     # 중복제거
     set_list = set(list_generator)
     return set_list
+
 
 # self number의 합
 def self_num_total(first_num, end_num) -> int :
@@ -124,7 +118,8 @@ def self_num_total(first_num, end_num) -> int :
 #차집합 구하기
 def self_num(f, e):
     self_num_set : set = number_set(f,e) - digits_set(f, e)
-    print("self_num_set: {}".format(sum(self_num_set)))
+    print("차집합을 이용: {}".format(sum(self_num_set)))
+
 
 def run():
     #1부터 5000 미만의 합을 구한다.
