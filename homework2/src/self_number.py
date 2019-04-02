@@ -68,6 +68,7 @@ python string을 for 문으로 10 1 , 2 로 읽을 수 있다.
 '''
 
 
+
 def number_set(f, e) -> set:
     return set([v for v in range(f, e)])
 
@@ -75,31 +76,14 @@ def number_set(f, e) -> set:
 def sum_of_numbers(f, e) -> set:
     return sum(number_set(f, e))
 
-def digits_set(f, e) -> set:
-    list_generator = []
-    for num in range(f, e):
-        if (num < 10):
-            generator = num + num
-            list_generator.append(generator)
-        else:
-            generator = ((num // 10) + (num % 10) + num)
-            if (generator < e):
-                list_generator.append(generator)
-
-    # 중복제거
-    set_list = set(list_generator)
-    return set_list
 
 def sum_of_digits(f, e) -> int:
     list_generator = []
     for num in range(f, e):
-        if(num < 10):
-            generator = num + num
+        generator = ((num // 10) + (num % 10) + num)
+
+        if (generator < e):
             list_generator.append(generator)
-        else:
-            generator = ((num // 10) + (num % 10) + num)
-            if (generator < e):
-                list_generator.append(generator)
 
     # 중복제거
     set_list = set(list_generator)
@@ -107,20 +91,35 @@ def sum_of_digits(f, e) -> int:
 
     return sum(set_list)
 
+
+def digits_set(f, e) -> set:
+    list_generator = []
+    for num in range(f, e):
+        generator = ((num // 10) + (num % 10) + num)
+        if (generator < e):
+            list_generator.append(generator)
+
+    # 중복제거
+    set_list = set(list_generator)
+    return set_list
+
+
 # self number의 합
 def self_num_total(first_num, end_num) -> int :
-    #generator 을 구한다.  d(91) = 9 + 1 + 91 = 101 은 generator가 된다. 각각의 자릿수 더하고 숫자값을 더한다.
     total_num = sum_of_numbers(first_num, end_num)
     total_generator = sum_of_digits(first_num, end_num)
 
+    # 전체 합 - generator 합 = self number 합
     sum_of_self_num = total_num - total_generator
 
     return sum_of_self_num
 
+
 #차집합 구하기
 def self_num(f, e):
-    self_num_set : set = number_set(f,e) - digits_set(f, e)
-    print("self_num_set: {}".format(sum(self_num_set)))
+    self_num_set : set = number_set(f, e) - digits_set(f, e)
+    return sum(self_num_set)
+
 
 def run():
     #1부터 5000 미만의 합을 구한다.
@@ -129,8 +128,9 @@ def run():
 
     # 1 ~ 5000 미만의 generator 을 구하면서 전체 데이터 값에 빼준다. 그러면 self_num의 총 합이 나온다.
     result = self_num_total(first_num, end_num)
-    self_num(first_num, end_num)
+    result1 = self_num(first_num, end_num)
     print("Sum of self number = {}".format(result))
+    print("차집합 이용 = {}".format(result1))
 
 
 if __name__ == '__main__':
