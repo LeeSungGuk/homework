@@ -6,16 +6,9 @@ from datetime import datetime, timedelta
 from jwt import InvalidSignatureError
 
 
-# 회원가입 토큰 발급
+# 회원가입 토큰 발급 payload 정의
 def sign_up(email: str, pw: str) -> str:
-    input_data = {
-        "email": email,
-        "pw": pw
-    }
     key = 'secret'
-
-    # 테스트용
-    # jwt_data = jwt.encode(input_data, key, algorithm='HS256')
 
     now = datetime.now()
     exp = timedelta(seconds=2)
@@ -30,7 +23,7 @@ def sign_up(email: str, pw: str) -> str:
     return jwt_token
 
 
-# 토큰생성 (만료 정보만)
+# 토큰 만료
 def make_jwt_token(email: str) -> str:
     # 토큰 정보 입력
     # now: 현재 시간, exp: 만료 시간 정보
