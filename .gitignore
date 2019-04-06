@@ -164,4 +164,8 @@ venv.bak/
 .idea/modules.xml
 .idea/vcs.xml
 
+MembershipManagemnetSystem/.idea
+MembershipManagemnetSystem/venv
+
+
 .gitignore
