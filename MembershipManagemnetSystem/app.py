@@ -1,6 +1,8 @@
 import logging as log
 
 from flask import Flask, request, make_response
+from src.account.user import User
+
 
 log.basicConfig(level=log.DEBUG)
 app = Flask(__name__)

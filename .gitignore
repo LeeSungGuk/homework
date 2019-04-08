@@ -167,5 +167,6 @@ venv.bak/
 MembershipManagemnetSystem/.idea
 MembershipManagemnetSystem/venv
 
+MembershipManagemnetSystem/tests/*.db
 
 .gitignore
