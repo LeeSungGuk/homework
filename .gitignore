@@ -170,3 +170,6 @@ MembershipManagemnetSystem/venv
 MembershipManagemnetSystem/tests/*.db
 
 .gitignore
+MembershipManagemnetSystem/static/
+MembershipManagemnetSystem/templates/
+*/tests/.pytest_cahche
